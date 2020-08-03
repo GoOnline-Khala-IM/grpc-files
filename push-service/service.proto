@@ -1,0 +1,34 @@
+syntax = "proto3";
+package push;
+
+import "../public/entity.proto";
+
+service Push {
+    rpc PushMessage (PushMessageRequest) returns (PushMessageResponse);
+    rpc PullMessage (PullMessageRequest) returns (stream PullMessageResponse);
+}
+
+message PushMessageRequest {
+    string Pusher = 1;
+    string Target = 3;
+    Message Message = 4;
+}
+
+message PushMessageResponse {
+    PushMessageResult Result = 1;
+}
+
+message PullMessageRequest {
+    string Target = 1;
+}
+
+message PullMessageResponse {
+    string Pusher = 1;
+    Message Message = 2;
+}
+
+enum PushMessageResult {
+    YES = 1;
+    NO = 2;
+    RECEIVED = 3;
+}

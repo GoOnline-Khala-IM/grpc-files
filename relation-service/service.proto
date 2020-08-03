@@ -1,0 +1,20 @@
+syntax = "proto3";
+package relation;
+
+service Relation {
+    rpc CheckRelation (CheckRelationRequest) returns (CheckRelationResponse);
+}
+
+message CheckRelationRequest {
+    string Caller = 1;
+    string Target = 2;
+}
+
+message CheckRelationResponse {
+    repeated Relation Relation = 1;
+}
+
+enum Relation {
+    ALLOW_SEND = 1;
+    ALLOW_RECEIVE = 2;
+}

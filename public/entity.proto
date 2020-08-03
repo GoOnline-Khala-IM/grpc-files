@@ -1,0 +1,6 @@
+message Message {
+    string Sender = 1;
+    string Receiver = 2;
+    string Title = 3;
+    string Content = 4;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+package auth;
+
+
+service Auth {
+    rpc CheckUserPermission (CheckUserPermissionRequest) returns (CheckUserPermissionResponse);
+}
+
+message CheckUserPermissionRequest {
+    string UserID = 1;
+    string Token = 2;
+}
+
+message CheckUserPermissionResponse {
+    CheckUserPermissionResult Result = 1;
+}
+
+enum CheckUserPermissionResult {
+    YES = 1;
+    NO = 2;
+}

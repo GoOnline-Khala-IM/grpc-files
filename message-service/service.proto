@@ -1,0 +1,44 @@
+syntax = "proto3";
+package message;
+
+import "../public/entity.proto";
+
+service Message {
+    rpc PushMessage (PushMessageRequest) returns (PushMessageResponse);
+    rpc GetMessagesByID (GetMessagesByIDRequest) returns (GetMessagesByIDResponse);
+}
+
+message PushMessageRequest {
+    string Pusher = 1;
+    string Token = 2;
+    string Target = 3;
+    Message Message = 4;
+}
+
+message PushMessageResponse {
+    PushMessageResult Result = 1;
+}
+
+message GetMessagesByIDRequest {
+    string Target = 1;
+    string Token = 2;
+    int64 MessageID = 3;
+    GetMessageOrder Order = 4;
+}
+
+message GetMessagesByIDResponse {
+    repeated Message MessageList = 1;
+}
+
+
+
+enum PushMessageResult {
+    YES = 1;
+    NO = 2;
+    RECEIVED = 3;
+}
+
+enum GetMessageOrder {
+    ASC = 1;
+    DESC = 2;
+}
